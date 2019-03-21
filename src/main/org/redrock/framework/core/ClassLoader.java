@@ -4,6 +4,7 @@ import org.redrock.framework.util.StringUtil;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -100,5 +101,23 @@ public class ClassLoader {
                 }
             }
         }
+    }
+    public Set<Class<?>> getClassSet(Class<?> clazz){
+        Set<Class<?>> classSet = new HashSet<Class<?>>();
+        for (Class clz : this.classSet){
+            if(clazz.isAssignableFrom(clz) && !clazz.equals(clz)){
+                classSet.add(clz);
+            }
+        }
+        return classSet;
+    }
+    public Set<Class<?>> getClassSetByAnnotation(Class<? extends Annotation> classAnnotation){
+        Set<Class<?>> classSetAnnotation = new HashSet<>();
+        for (Class<?> clazz : this.classSet){
+            if(clazz.isAnnotationPresent(classAnnotation)){
+                classSetAnnotation.add(clazz);
+            }
+        }
+        return classSetAnnotation;
     }
 }

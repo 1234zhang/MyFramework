@@ -2,10 +2,8 @@ package org.redrock.framework.core;
 
 import org.redrock.framework.annotation.AutoWired;
 import org.redrock.framework.annotation.Component;
-import org.redrock.framework.annotation.Controller;
 import org.redrock.framework.util.ReflectUtil;
 
-import javax.naming.ldap.Control;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -50,12 +48,10 @@ public class BeenFactory {
         }
         return beenFactory;
     }
-
     public Map<Class<?>, Object> getControllerMap() {
         return controllerMap;
     }
     public Map<Class<?> , Object> getComponentMap(){return componentMap;}
-
     private BeenFactory() {
         controllerMap = new HashMap<>();
         componentMap = new HashMap<>();
@@ -95,6 +91,10 @@ public class BeenFactory {
                 }
             }
         }
+    }
+    public void set(Class<?> clazz,Object obj){
+        componentMap.put(clazz, obj);
+        componentSet.add(clazz);
     }
     public <T> T getBeen(Class<T> clazz){
         T t = (T) componentMap.get(clazz);

@@ -69,9 +69,4 @@ public class RouteEngine {
     public Handle getHandle(HttpMethod httpMethod,String uri) {
         return RouteUtil.isExist(routeMap.get(httpMethod),uri);
     }
-    public void traverse(HttpMethod httpMethod){
-       RouteTree tree = routeMap.get(httpMethod);
-        RouteUtil.traverse(tree);
-        System.out.println(tree.getChildNode().isEmpty());
-    }
 }

@@ -17,6 +17,7 @@ import java.util.Properties;
 @WebServlet("/*")
 public class DispatcherServlet extends HttpServlet {
     private PropsLoader propsLoader = null;
+    private AopLoader aopLoader = null;
     private BeenFactory beenFactory = null;
     private RouteEngine routeEngine = null;
     private ClassLoader classLoader = null;
@@ -25,8 +26,9 @@ public class DispatcherServlet extends HttpServlet {
     public void init() throws ServletException {
         propsLoader.init(getServletContext());
         propsLoader = PropsLoader.getInstance();
-        beenFactory = BeenFactory.getInstance();
         routeEngine = RouteEngine.getInstance();
+        aopLoader = AopLoader.geteInstance();
+        beenFactory = BeenFactory.getInstance();
         classLoader = ClassLoader.getInstance();
     }
 
@@ -37,8 +39,6 @@ public class DispatcherServlet extends HttpServlet {
         String[] uriInfo = req.getRequestURI().split("//?");
         //RouteInfo routeInfo = new RouteInfo(httpMethod,req.getRequestURI());
         Handle handle = routeEngine.getHandle(httpMethod,req.getRequestURI());
-        routeEngine.traverse(httpMethod);
-        System.out.println(req.getRequestURI());
         if(handle == null){
             res = "404 not found";
         }else{

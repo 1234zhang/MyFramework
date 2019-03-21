@@ -1,15 +1,12 @@
 package org.redrock.framework.demo;
 
-import org.redrock.framework.annotation.AutoWired;
-import org.redrock.framework.annotation.Controller;
-import org.redrock.framework.annotation.HttpMethod;
-import org.redrock.framework.annotation.RequestMapper;
+import org.redrock.framework.annotation.*;
 import org.redrock.framework.been.FrameworkContext;
 import org.redrock.framework.been.ResponseEntity;
 
 import javax.servlet.annotation.WebServlet;
 
-
+@Aspect(Controller.class)
 @Controller
 @RequestMapper(value = "/test")
 public class MainController {
