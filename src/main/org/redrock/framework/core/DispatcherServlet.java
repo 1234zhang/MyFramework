@@ -27,7 +27,7 @@ public class DispatcherServlet extends HttpServlet {
         propsLoader.init(getServletContext());
         propsLoader = PropsLoader.getInstance();
         routeEngine = RouteEngine.getInstance();
-        aopLoader = AopLoader.geteInstance();
+        aopLoader = AopLoader.getInstance();
         beenFactory = BeenFactory.getInstance();
         classLoader = ClassLoader.getInstance();
     }
@@ -37,7 +37,6 @@ public class DispatcherServlet extends HttpServlet {
         String res = null;
         HttpMethod httpMethod = HttpMethod.valueOf(req.getMethod());
         String[] uriInfo = req.getRequestURI().split("//?");
-        //RouteInfo routeInfo = new RouteInfo(httpMethod,req.getRequestURI());
         Handle handle = routeEngine.getHandle(httpMethod,req.getRequestURI());
         if(handle == null){
             res = "404 not found";

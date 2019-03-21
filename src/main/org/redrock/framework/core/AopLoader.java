@@ -52,7 +52,7 @@ public class AopLoader {
             }
         }
     }
-    public static AopLoader geteInstance(){
+    public static AopLoader getInstance(){
         if(instance == null){
             synchronized (AopLoader.class){
                 if(instance == null){
@@ -97,7 +97,6 @@ public class AopLoader {
         Class<? extends Annotation> annotation = aspect.value();
         if(annotation != null && !annotation.equals(Aspect.class)){
             targetClass.addAll(classLoader.getClassSetByAnnotation(annotation));
-
         }
         return targetClass;
     }

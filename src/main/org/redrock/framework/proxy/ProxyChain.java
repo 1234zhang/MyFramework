@@ -24,6 +24,10 @@ public class ProxyChain {
         this.proxyList = proxyList;
     }
 
+    public ProxyChain() {
+        super();
+    }
+
     public Class<?> getTargetClass() {
         return targetClass;
     }

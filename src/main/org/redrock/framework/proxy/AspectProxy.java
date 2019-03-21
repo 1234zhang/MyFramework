@@ -14,9 +14,9 @@ public class AspectProxy implements Proxy{
         Object result;
         begin();
         if(intercept(clazz,method,methodParams)){
-            before();
+            before(clazz,method,methodParams);
             result = proxyChain.doProxyChain();
-            after();
+            after(clazz,method,methodParams);
         }else{
             result = proxyChain.doProxyChain();
         }
@@ -26,16 +26,16 @@ public class AspectProxy implements Proxy{
         return true;
     }
     public void begin(){
-
+        System.out.println("hello world");
     }
-    public void before(){
+    public void before(Class<?> clazz, Method method, Object[] params){
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-    public void after(){
+    public void after(Class<?> clazz, Method method, Object[] params){
 
     }
     public void end(){

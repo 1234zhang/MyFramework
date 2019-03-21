@@ -6,7 +6,6 @@ import org.redrock.framework.been.ResponseEntity;
 
 import javax.servlet.annotation.WebServlet;
 
-@Aspect(Controller.class)
 @Controller
 @RequestMapper(value = "/test")
 public class MainController {
